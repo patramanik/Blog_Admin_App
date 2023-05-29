@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\AdminDashbordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home',function (){
+Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/dashboard', function () {
+
+Route::get('/admin', [AdminDashbordController::class, 'index'])->name('admin.index');
+
+Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
