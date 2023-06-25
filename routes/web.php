@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminDashbordController;
+use App\Http\Controllers\admin\CatagoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/admin/category', [CatagoryController::class, 'index'])->name('admin.category.category');
+Route::get('/admin/addcategory', [CatagoryController::class, 'create'])->name('admin.category.addCategory');
 
 
 Route::get('/admin', [AdminDashbordController::class, 'index'])->name('admin.index');
