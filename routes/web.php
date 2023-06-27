@@ -24,8 +24,14 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/user/login', function () {
+    return view('admin.category.login');
+});
+
+// categori Routes
 Route::get('/admin/category', [CatagoryController::class, 'index'])->name('admin.category.category');
 Route::get('/admin/addcategory', [CatagoryController::class, 'create'])->name('admin.category.addCategory');
+
 
 
 Route::get('/admin', [AdminDashbordController::class, 'index'])->name('admin.index');

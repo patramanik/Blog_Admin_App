@@ -16,4 +16,5 @@ class CatagoryController extends Controller
     {
         return view('Admin.category.addCategory');
     }
+    
 }
