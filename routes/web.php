@@ -41,6 +41,8 @@ Route::get('/user/login', function () {
 Route::get('/admin/category', [CatagoryController::class, 'index'])->name('admin.category.category');
 Route::get('/admin/addcategory', [CatagoryController::class, 'create'])->name('admin.category.addCategory');
 Route::Post('/admin/addcategory', [CatagoryController::class, 'store']);
+Route::get('/admin/edit/{id}',[CatagoryController::class, 'edit'])->name('admin.category.edit');
+Route::put('/admin/update/{id}',[CatagoryController::class, 'update']);
 
 // BlogPost
 Route::get('/admin/posts', [BlogPostController::class, 'show'])->name('admin.blogPost.posts');

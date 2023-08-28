@@ -33,11 +33,11 @@ class CategoryFormRequest extends FormRequest
                 'max:200'
             ],
             'image' =>[
-                'required',
+                'nullable',
                 'mimes:jpeg,jpg,png'
             ],
             'description' =>[
-                'required',
+                'nullable',
             ],
             'keywords' =>[
                 'required',

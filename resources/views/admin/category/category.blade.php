@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'category')
+@section('title', 'Category')
 @section('content')
     <div class="container-fluid px-4">
         <h1 class="mt-4">Category</h1>
@@ -68,9 +68,8 @@
                             @endif
                         </td>
                         <td>
-                            <button type="button" class="btn btn-dark btn-sm" style="margin: 2px 2px 2px 2px">Edit</button>
-                            <button type="button"
-                                class="btn btn-danger btn-sm"style="margin: 2px 2px 2px 2px">Delet</button>
+                            <a href="{{url('/admin/edit/'.$catagory->id)}}" type="button" class="btn btn-dark btn-sm" style="margin: 2px 2px 2px 2px">Edit</a>
+                            <a href="{{url('/admin/edit/'.$catagory->id)}}" type="button" class="btn btn-danger btn-sm" style="margin: 2px 2px 2px 2px">Delete</a>
                         </td>
                     </tr>
                     @endforeach
