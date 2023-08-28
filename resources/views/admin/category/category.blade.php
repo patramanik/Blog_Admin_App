@@ -69,7 +69,7 @@
                         </td>
                         <td>
                             <a href="{{url('/admin/edit/'.$catagory->id)}}" type="button" class="btn btn-dark btn-sm" style="margin: 2px 2px 2px 2px">Edit</a>
-                            <a href="{{url('/admin/edit/'.$catagory->id)}}" type="button" class="btn btn-danger btn-sm" style="margin: 2px 2px 2px 2px">Delete</a>
+                            <a href="{{url('/admin/destroy/'.$catagory->id)}}" type="button" class="btn btn-danger btn-sm" style="margin: 2px 2px 2px 2px">Delete</a>
                         </td>
                     </tr>
                     @endforeach

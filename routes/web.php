@@ -43,6 +43,7 @@ Route::get('/admin/addcategory', [CatagoryController::class, 'create'])->name('a
 Route::Post('/admin/addcategory', [CatagoryController::class, 'store']);
 Route::get('/admin/edit/{id}',[CatagoryController::class, 'edit'])->name('admin.category.edit');
 Route::put('/admin/update/{id}',[CatagoryController::class, 'update']);
+Route::get('/admin/destroy/{id}',[CatagoryController::class, 'destroy']);
 
 // BlogPost
 Route::get('/admin/posts', [BlogPostController::class, 'show'])->name('admin.blogPost.posts');

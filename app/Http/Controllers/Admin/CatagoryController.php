@@ -89,4 +89,21 @@ class CatagoryController extends Controller
         return redirect('admin/category')->with('message','Category update Successfully') ;
 
     }
+
+    public function destroy($id){
+        $category=Catagory::find($id);
+        if($category)
+        {
+            $imgLocation = 'uploads/category/'.$category->image;
+            if(File::exists($imgLocation)){
+                File::delete($imgLocation);
+            }
+            $category->delete();
+            return redirect('admin/category')->with('message','Category deleted Successfully') ;
+        }
+        else
+        {
+            return redirect('admin/category')->with('message',' No Category id Found.') ;
+        }
+    }
 }
