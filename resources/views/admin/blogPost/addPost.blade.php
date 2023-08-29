@@ -18,7 +18,7 @@
                         <div class="mb-3">
                             <label class="mb-2"> Select Category</label>
                             <select class="form-select" aria-label="Default select example">
-                                <option selected="">Open this Category menu</option>
+                                <option selected="">Select Form Category menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
@@ -34,8 +34,8 @@
                             </span>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Post Content</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label for="editor" class="form-label">Post Content</label>
+                            <textarea class="form-control" id="editor" rows="3"></textarea>
                             <span class="alert-danger" style="color: red">
                                 @error('name')
                                     {{ $message }}
@@ -50,4 +50,17 @@
             </div>
         </div>
     </section>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/decoupled-document/ckeditor.js"></script> --}}
+    <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script> --}}
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection

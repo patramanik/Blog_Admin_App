@@ -51,7 +51,7 @@ Route::get('/admin/addpost', [BlogPostController::class, 'create'])->name('admin
 
 
 
-//
+//Admin Routes
 Route::get('/admin', [AdminDashbordController::class, 'index'])->name('admin.index');
 
 Route::get('dashboard', function () {
