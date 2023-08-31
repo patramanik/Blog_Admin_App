@@ -12,17 +12,19 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ url('/admin/addcategory') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('/admin/addpost') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
                             <label class="mb-2"> Select Category</label>
+
                             <select class="form-select" aria-label="Default select example">
                                 <option selected="">Select Form Category menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @foreach ($catagorys as $catagory )
+                                <option value="{{$catagory->id}}">{{$catagory->name}}</option>
+                                @endforeach
                             </select>
+
                         </div>
                         <div class="mb-3">
                             <label class="mb-2">Post Name</label>
