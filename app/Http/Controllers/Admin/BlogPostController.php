@@ -23,5 +23,27 @@ class BlogPostController extends Controller
 
     public function submit(PostFormRequest $request){
 
+        $data=$request->validated();
+
+        dd($request->all());
+        return view('admin.blogPost.posts');
+    }
+
+    public function store(Request $request){
+        // $data=$request->validated();
+        dd($request->all());
+        return view('admin.blogPost.posts');
+    }
+
+    public function upload(Request $request){
+        if($request->hasFile('upload')){
+            $file = $request->file('upload'); // Corrected the variable name from $data to $request
+            $filename = time() . '.' . $file->getClientOriginalExtension(); // Used getClientOriginalExtension() method
+            $file->move('uploads/post/upload/', $filename);
+            $url = asset('uploads/post/upload/' . $fileName);
+
+         return response()->json(['fileName' => $fileName,'uploded'=>1,'url' =>$url ]);
+
+        }
     }
 }

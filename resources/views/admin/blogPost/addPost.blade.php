@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'category')
+@section('title', 'Add Post')
 @section('content')
     @if (session('message'))
         <div class="alert alert-success">{{ session('message') }}</div>
@@ -17,9 +17,8 @@
 
                         <div class="mb-3">
                             <label class="mb-2"> Select Category</label>
-
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected="">Select Form Category menu</option>
+                            <select class="form-select" name="catagory_id" aria-label="Default select example">
+                                <option selected="">------Select------</option>
                                 @foreach ($catagorys as $catagory )
                                 <option value="{{$catagory->id}}">{{$catagory->name}}</option>
                                 @endforeach
@@ -35,9 +34,9 @@
                                 @enderror
                             </span>
                         </div>
-                        <div class="mb-3">
+                        <div class=" mb-3">
                             <label for="editor" class="form-label">Post Content</label>
-                            <textarea class="form-control" id="editor" rows="3"></textarea>
+                            <textarea class="form-control" name="description" id="editor" rows="5" ></textarea>
                             <span class="alert-danger" style="color: red">
                                 @error('name')
                                     {{ $message }}
@@ -57,7 +56,11 @@
     {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script> --}}
     <script>
         ClassicEditor
-            .create(document.querySelector('#editor'))
+            .create(document.querySelector('#editor'),{
+                ckfinder: {
+                    uploadUrl:'{{route('admin.blogPost.upload').'?_token='.csrf_token()}}'
+                }
+            })
             .then(editor => {
                 console.log(editor);
             })

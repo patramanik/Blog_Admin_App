@@ -48,7 +48,8 @@ Route::get('/admin/destroy/{id}',[CatagoryController::class, 'destroy']);
 // BlogPost
 Route::get('/admin/posts', [BlogPostController::class, 'show'])->name('admin.blogPost.posts');
 Route::get('/admin/addpost', [BlogPostController::class, 'create'])->name('admin.blogPost.addPost');
-// Route::post('/admin/addpost', [BlogPostController::class, 'submit'])->name('admin.blogPost.addPost');
+Route::post('/admin/addpost', [BlogPostController::class, 'store']);
+Route::post('/admin/addpost', [BlogPostController::class, 'upload'])->name('admin.blogPost.upload');
 
 
 
