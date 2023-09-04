@@ -14,7 +14,11 @@
                 <div class="card-body">
                     <form action="{{ url('/admin/addpost') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
+                        {{-- <pre>
+                            @php
+                                print_r($errors->all());
+                            @endphp
+                        </pre> --}}
                         <div class="mb-3">
                             <label class="mb-2"> Select Category</label>
                             <select class="form-select" name="catagory_id" aria-label="Default select example">
@@ -23,22 +27,46 @@
                                 <option value="{{$catagory->id}}">{{$catagory->name}}</option>
                                 @endforeach
                             </select>
-
+                            <span class="alert-danger" style="color: red">
+                                @error('catagory_id')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="mb-3">
                             <label class="mb-2">Post Name</label>
-                            <input for="text" name="name" class="form-control">
+                            <input for="text" name="post_name" class="form-control">
                             <span class="alert-danger" style="color: red">
-                                @error('name')
+                                @error('post_name')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-2">Mata Title</label>
+                            <input for="text" name="mataTile" class="form-control">
+                            <span class="alert-danger" style="color: red">
+                                @error('mataTile')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="mb-2" for="image">Post Image</label>
+                            <div class="card">
+                                <input type="file" class="form-control-file" id="image" name="image">
+                            </div>
+                            <span class="alert-danger" style="color: red">
+                                @error('image')
                                     {{ $message }}
                                 @enderror
                             </span>
                         </div>
                         <div class=" mb-3">
                             <label for="editor" class="form-label">Post Content</label>
-                            <textarea class="form-control" name="description" id="editor" rows="5" ></textarea>
+                            <textarea class="form-control" name="Post_Content" id="editor" rows="5" ></textarea>
                             <span class="alert-danger" style="color: red">
-                                @error('name')
+                                @error('Post_Content')
                                     {{ $message }}
                                 @enderror
                             </span>
@@ -69,3 +97,5 @@
             });
     </script>
 @endsection
+
+

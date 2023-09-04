@@ -19,7 +19,7 @@
                         </span>
                     </div>
                     <div class="mb-3">
-                        <label class="mb-2">Mata Title</label>
+                        <label class="mb-2">Meta Title</label>
                         <input for="text" name="mataTile" class="form-control">
                         <span class="alert-danger" style="color: red">
                             @error('mataTile')

@@ -13,7 +13,7 @@
                     <tr class="">
                         <th>Sno.</th>
                         <th>Name</th>
-                        <th>Mata Title</th>
+                        <th>Meta Title</th>
                         <th>Image</th>
                         <th>Description</th>
                         <th>Keywords</th>

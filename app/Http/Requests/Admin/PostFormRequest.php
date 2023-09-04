@@ -11,7 +11,7 @@ class PostFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +29,15 @@ class PostFormRequest extends FormRequest
                 'required',
                 'string',
                 'max:200'
+            ],
+            'mata_title'=>[
+                'required',
+                'string',
+                'max:200'
+            ],
+            'image'=>[
+                'nullable',
+                'mimes:jpeg,jpg,png'
             ],
             'post_content'=>[
                 'required',

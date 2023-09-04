@@ -14,6 +14,8 @@ class Post extends Model
 
         'category_id',
         'post_name',
+        'mata_title',
+        'image',
         'post_content'
 
     ];

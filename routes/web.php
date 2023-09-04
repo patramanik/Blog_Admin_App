@@ -28,9 +28,7 @@ Route::get('/user/login', function () {
     return view('admin.category.login');
 });
 
-// Route::get('/admin/posts', function () {
-//     return view('admin.blogPost.posts');
-// });
+
 
 
 
@@ -48,8 +46,9 @@ Route::get('/admin/destroy/{id}',[CatagoryController::class, 'destroy']);
 // BlogPost
 Route::get('/admin/posts', [BlogPostController::class, 'show'])->name('admin.blogPost.posts');
 Route::get('/admin/addpost', [BlogPostController::class, 'create'])->name('admin.blogPost.addPost');
-Route::post('/admin/addpost', [BlogPostController::class, 'store']);
-Route::post('/admin/addpost', [BlogPostController::class, 'upload'])->name('admin.blogPost.upload');
+Route::post('/admin/addpost', [BlogPostController::class, 'submit']);
+Route::post('/admin/upload', [BlogPostController::class, 'upload'])->name('admin.blogPost.upload');
+// Route::post('/admin/addpost', [BlogPostController::class, 'store']);
 
 
 
