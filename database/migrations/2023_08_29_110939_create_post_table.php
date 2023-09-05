@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer('category_id');
             $table->string('post_name');
-            $table->string('mata_title');
+            $table->string('meta_title');
             $table->string('image');
+            $table->string('Post_keywords');
             $table->Text('post_content');
+            $table->tinyInteger('status')->default('0');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
         });

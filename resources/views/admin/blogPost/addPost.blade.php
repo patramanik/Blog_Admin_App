@@ -14,11 +14,11 @@
                 <div class="card-body">
                     <form action="{{ url('/admin/addpost') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- <pre>
+                        <pre>
                             @php
                                 print_r($errors->all());
                             @endphp
-                        </pre> --}}
+                        </pre>
                         <div class="mb-3">
                             <label class="mb-2"> Select Category</label>
                             <select class="form-select" name="catagory_id" aria-label="Default select example">
@@ -44,9 +44,9 @@
                         </div>
                         <div class="mb-3">
                             <label class="mb-2">Mata Title</label>
-                            <input for="text" name="mataTile" class="form-control">
+                            <input for="text" name="metaTile" class="form-control">
                             <span class="alert-danger" style="color: red">
-                                @error('mataTile')
+                                @error('metaTile')
                                     {{ $message }}
                                 @enderror
                             </span>
@@ -58,6 +58,15 @@
                             </div>
                             <span class="alert-danger" style="color: red">
                                 @error('image')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-2">Keywords</label>
+                            <input for="texi" name="Post_keywords" class="form-control">
+                            <span class="aleart-danger" style="color: red">
+                                @error('Post_keywords')
                                     {{ $message }}
                                 @enderror
                             </span>
