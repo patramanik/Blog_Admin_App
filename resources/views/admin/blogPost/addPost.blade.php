@@ -14,17 +14,17 @@
                 <div class="card-body">
                     <form action="{{ url('/admin/addpost') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <pre>
+                        {{-- <pre>
                             @php
                                 print_r($errors->all());
                             @endphp
-                        </pre>
+                        </pre> --}}
                         <div class="mb-3">
                             <label class="mb-2"> Select Category</label>
                             <select class="form-select" name="catagory_id" aria-label="Default select example">
                                 <option selected="">------Select------</option>
                                 @foreach ($catagorys as $catagory )
-                                <option value="{{$catagory->id}}">{{$catagory->name}}</option>
+                                <option value="{{$catagory->category_id}}">{{$catagory->name}}</option>
                                 @endforeach
                             </select>
                             <span class="alert-danger" style="color: red">

@@ -49,6 +49,7 @@ Route::get('/admin/addpost', [BlogPostController::class, 'create'])->name('admin
 Route::post('/admin/addpost', [BlogPostController::class, 'submit']);
 Route::post('/admin/upload', [BlogPostController::class, 'upload'])->name('admin.blogPost.upload');
 // Route::post('/admin/addpost', [BlogPostController::class, 'store']);
+// Route::get('/admin/posts', [BlogPostController::class, 'postshow']);
 
 
 

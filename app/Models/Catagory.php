@@ -12,6 +12,7 @@ class Catagory extends Model
     protected $table = 'catagoris';
 
     protected $fillable =[
+        'catagory_id',
         'name',
         'mata_title',
         'image',

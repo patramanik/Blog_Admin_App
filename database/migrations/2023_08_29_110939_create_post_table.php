@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('post', function (Blueprint $table) {
-            $table->id();
-            $table->integer('category_id');
+            $table->id('post_id');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('category_id')->on('catagoris');
             $table->string('post_name');
             $table->string('meta_title');
             $table->string('image');
             $table->string('Post_keywords');
-            $table->Text('post_content');
+            $table->longText('post_content');
             $table->tinyInteger('status')->default('0');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();

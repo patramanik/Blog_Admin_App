@@ -19,27 +19,34 @@ class BlogPostController extends Controller
         return view('admin.blogPost.addPost')->with($c_data);
     }
 
+
+    // public function postshow(){
+
+    //     return Catagory::all();
+    // }
+
     public function show()
     {
         $post = Post::all();
-        $post_data = compact('post');
-        return view('admin.blogPost.posts')->with($post_data);
+        $posts = compact('post');
+        // dd($posts);
+        return view('admin.blogPost.posts')->with($posts);
     }
 
     public function submit(Request $request) {
         $data = $request->validate([
             'catagory_id' => 'required',
             'post_name' => 'required|string|max:200',
-            'metaTile' => 'required|string|max:200', // Fixed the field name
+            'metaTile' => 'required|string|max:200',
             'image' => 'required|mimes:jpeg,jpg,png',
             'Post_keywords'=>'required|string',
             'Post_Content' => 'required|string',
         ]);
 
         $post = new Post;
-        $post->category_id = $data['catagory_id']; // Fixed the field name
+        $post->category_id = $data['catagory_id'];
         $post->post_name = $data['post_name'];
-        $post->meta_title = $data['metaTile']; // Fixed the field name
+        $post->meta_title = $data['metaTile'];
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -48,8 +55,8 @@ class BlogPostController extends Controller
             $post->image = $filename;
         }
 
-        $post->Post_keywords = $data['Post_keywords']; // Fixed the field name
-        $post->post_content = $data['Post_Content']; // Fixed the field name
+        $post->Post_keywords = $data['Post_keywords'];
+        $post->post_content = $data['Post_Content'];
         $post->created_by = Auth::user()->id;
         $post->save();
 

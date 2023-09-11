@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'category')
+@section('title', 'post')
 @section('content')
     <div class="container-fluid px-4">
         <h1 class="mt-4">Posts</h1>
@@ -24,24 +24,25 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    {{-- @foreach ($catagorys as $catagory ) --}}
+                    @foreach ($post as $post )
                     <tr>
-                        {{-- <td>{{$loop->index+1}}</td>
-                        <td>{{$catagory->name}}</td>
-                        <td>{{$catagory->mata_title}}</td>
+                        <td>{{$loop->index+1}}</td>
+                        <td>{{$post->post_name}}</td>
+                        <td>{{$post->category_id}}</td>
+                        <td>{{$post->meta_title}}</td>
                         <td>
-                            <img src="{{asset('uploads/category/'.$catagory->image)}}" class="img-thumbnail" alt="imges"
+                            <img src="{{asset('uploads/post/'.$post->image)}}" class="img-thumbnail" alt="imges"
                                 height="50px" width="70px">
-                        </td> --}}
+                        </td>
                         <td>
                             <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop" style="margin: 2px 2px 2px 2px">View</button>
                         </td>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-dialog modal-dialog-scrollable modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Description</h1>
@@ -49,7 +50,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        {{-- {{$catagory->meta_description}} --}}
+                                        {!!$post->post_content!!}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -60,26 +61,21 @@
                         </div>
                         {{-- End Modal --}}
                         <td><span class="d-inline-block text-truncate" style="max-width: 120px;">
-                            {{-- {{$catagory->c_keywords}} --}}
+                            {{$post->Post_keywords}}
                         </span></td>
                         <td>
-                            {{-- @if ($catagory->status==1)
+                            @if ($post->status==1)
                             <span class="text-wrap" style="color: green">Publish</span>
                             @else
                             <span style="color: red">Not Publish</span>
-                            @endif --}}
-                        </td>
-                        <td>
-                            <a href="#" type="button" class="btn btn-dark btn-sm" style="margin: 2px 2px 2px 2px">Edit</a>
-                            <a href="#" type="button" class="btn btn-dark btn-sm" style="margin: 2px 2px 2px 2px">Edit</a>
-
+                            @endif
                         </td>
                         {{-- <td>
-                            <a href="{{url('/admin/edit/'.$catagory->id)}}" type="button" class="btn btn-dark btn-sm" style="margin: 2px 2px 2px 2px">Edit</a>
-                            <a href="{{url('/admin/destroy/'.$catagory->id)}}" type="button" class="btn btn-danger btn-sm" style="margin: 2px 2px 2px 2px">Delete</a>
+                            <a href="{{url('/admin/editPost/'.$post->id)}}" type="button" class="btn btn-dark btn-sm" style="margin: 2px 2px 2px 2px">Edit</a>
+                            <a href="{{url('/admin/destroy/'.$post->id)}}" type="button" class="btn btn-danger btn-sm" style="margin: 2px 2px 2px 2px">Delete</a>
                         </td> --}}
                     </tr>
-                    {{-- @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
