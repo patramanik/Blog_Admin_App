@@ -48,6 +48,10 @@ Route::get('/admin/posts', [BlogPostController::class, 'show'])->name('admin.blo
 Route::get('/admin/addpost', [BlogPostController::class, 'create'])->name('admin.blogPost.addPost');
 Route::post('/admin/addpost', [BlogPostController::class, 'submit']);
 Route::post('/admin/upload', [BlogPostController::class, 'upload'])->name('admin.blogPost.upload');
+Route::get('/admin/editPost/{id}', [BlogPostController::class, 'edit'])->name('admin.blogPost.editPost');
+Route::put('/admin/updatepost/{id}', [BlogPostController::class, 'update']);
+Route::get('/admin/destroypost/{id}', [BlogPostController::class, 'destroy']);
+
 // Route::post('/admin/addpost', [BlogPostController::class, 'store']);
 // Route::get('/admin/posts', [BlogPostController::class, 'postshow']);
 

@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use App\Models\Catagory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\PostFormRequest;
 
 
 class BlogPostController extends Controller
@@ -79,4 +80,62 @@ class BlogPostController extends Controller
             return response()->json(['fileName' => $filename, 'uploaded' => 1, 'url' => $url]);
         }
     }
+    
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id); // Use findOrFail to handle not found cases.
+        return view('admin.blogPost.editPost', compact('post'));
+    }
+
+    public function update(PostFormRequest $request,$id){
+        // dd($request);
+
+        $data=$request->validated();
+
+        $post=Post::find($id);
+        $post->category_id = $data['catagory_id'];
+        $post->post_name = $data['post_name'];
+        $post->meta_title = $data['metaTile'];
+
+
+        if ($request->hasFile('image')) // Corrected the method name to hasFile
+        {
+            $imgLocation = 'uploads/category/'.$post->image;
+            if(File::exists($imgLocation)){
+                File::delete($imgLocation);
+            }
+            $file = $request->file('image'); // Corrected the variable name from $data to $request
+            $filename = time() . '.' . $file->getClientOriginalExtension(); // Used getClientOriginalExtension() method
+            $file->move('uploads/post/', $filename);
+            $post->image = $filename;
+        }
+
+        $post->Post_keywords = $data['Post_keywords'];
+        $post->post_content = $data['Post_Content'];
+        $post->created_by = Auth::user()->id;
+        $post->update();
+
+        return redirect('/admin/posts')->with('message','Category update Successfully');
+
+    }
+
+
+    public function destroy($id){
+        $post = Post::find($id);
+        if($post)
+        {
+            $imgLocation = 'uploads/post/'.$post->image;
+            if(File::exists($imgLocation)){
+                File::delete($imgLocation);
+            }
+            $post->delete();
+            return redirect('/admin/posts')->with('message','Category deleted Successfully') ;
+        }
+        else
+        {
+            return redirect('/admin/posts')->with('message',' No Category id Found.') ;
+        }
+    }
+
+
 }

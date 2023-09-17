@@ -24,7 +24,7 @@
                             <select class="form-select" name="catagory_id" aria-label="Default select example">
                                 <option selected="">------Select------</option>
                                 @foreach ($catagorys as $catagory )
-                                <option value="{{$catagory->category_id}}">{{$catagory->name}}</option>
+                                <option value="{{$catagory->id}}">{{$catagory->name}}</option>
                                 @endforeach
                             </select>
                             <span class="alert-danger" style="color: red">

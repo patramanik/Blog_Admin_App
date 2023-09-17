@@ -85,7 +85,7 @@ class CatagoryController extends Controller
         $category->created_by = Auth::user()->id;
         $category->update();
 
-        return redirect('admin/category')->with('message','Category update Successfully') ;
+        return redirect('admin/category')->with('message','Category update Successfully');
 
     }
 
