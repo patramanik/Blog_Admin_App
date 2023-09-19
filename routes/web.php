@@ -51,9 +51,13 @@ Route::post('/admin/upload', [BlogPostController::class, 'upload'])->name('admin
 Route::get('/admin/editPost/{id}', [BlogPostController::class, 'edit'])->name('admin.blogPost.editPost');
 Route::put('/admin/updatepost/{id}', [BlogPostController::class, 'update']);
 Route::get('/admin/destroypost/{id}', [BlogPostController::class, 'destroy']);
+Route::get('/admin/postview', [BlogPostController::class, 'view'])->name('admin.blogPost.view');
+
 
 // Route::post('/admin/addpost', [BlogPostController::class, 'store']);
 // Route::get('/admin/posts', [BlogPostController::class, 'postshow']);
+ Route::get('/dashbord/catagory', [AdminDashbordController::class, 'catagory']);
+
 
 
 

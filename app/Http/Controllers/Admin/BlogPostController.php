@@ -34,6 +34,15 @@ class BlogPostController extends Controller
         return view('admin.blogPost.posts')->with($posts);
     }
 
+    public function view()
+    {
+        $post = Post::all();
+        $posts = compact('post');
+        //  dd($post);
+        return view('admin.blogPost.view')->with($posts);
+    }
+
+
     public function submit(Request $request) {
         $data = $request->validate([
             'catagory_id' => 'required',
@@ -80,7 +89,7 @@ class BlogPostController extends Controller
             return response()->json(['fileName' => $filename, 'uploaded' => 1, 'url' => $url]);
         }
     }
-    
+
     public function edit($id)
     {
         $post = Post::findOrFail($id); // Use findOrFail to handle not found cases.
