@@ -25,11 +25,24 @@ class BlogPostController extends Controller
 
     //     return Catagory::all();
     // }
+    // public function pshow()
+    // {
+
+    //     $result = Catagory::join('Catagory', 'Catagory.id', '=', 'post.catagory_id')
+    //         ->select('Catagory.name')
+    //         ->get();
+
+    //     return $result;
+    // }
 
     public function show()
     {
         $post = Post::all();
-        $posts = compact('post');
+        $catagorys = Catagory::all();
+        $posts = compact('post','catagorys');
+        // if ($catagorys->id == $post->category_id) {
+        //     dd($catagorys->name);
+        // }
         // dd($posts);
         return view('admin.blogPost.posts')->with($posts);
     }

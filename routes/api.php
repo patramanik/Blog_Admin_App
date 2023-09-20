@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/posts/{id?}', [ApiController::class, 'postList']);
+Route::get('/catagorys/{id?}', [ApiController::class, 'catagoryList']);
 
 
 

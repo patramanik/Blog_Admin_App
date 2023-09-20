@@ -24,17 +24,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user/login', function () {
-    return view('admin.category.login');
-});
-
-
-
-
-
-
-
-
 // categori Routes
 Route::get('/admin/category', [CatagoryController::class, 'index'])->name('admin.category.category');
 Route::get('/admin/addcategory', [CatagoryController::class, 'create'])->name('admin.category.addCategory');
@@ -51,22 +40,23 @@ Route::post('/admin/upload', [BlogPostController::class, 'upload'])->name('admin
 Route::get('/admin/editPost/{id}', [BlogPostController::class, 'edit'])->name('admin.blogPost.editPost');
 Route::put('/admin/updatepost/{id}', [BlogPostController::class, 'update']);
 Route::get('/admin/destroypost/{id}', [BlogPostController::class, 'destroy']);
+//aditionl
 Route::get('/admin/postview', [BlogPostController::class, 'view'])->name('admin.blogPost.view');
 
 
 // Route::post('/admin/addpost', [BlogPostController::class, 'store']);
-// Route::get('/admin/posts', [BlogPostController::class, 'postshow']);
+// Route::get('/admin/cat', [BlogPostController::class, 'pshow']);
  Route::get('/dashbord/catagory', [AdminDashbordController::class, 'catagory']);
 
 
 
 
 //Admin Routes
-Route::get('/admin', [AdminDashbordController::class, 'index'])->name('admin.index');
+Route::get('dashboard', [AdminDashbordController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

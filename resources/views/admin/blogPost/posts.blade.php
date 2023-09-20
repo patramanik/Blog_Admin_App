@@ -28,7 +28,11 @@
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $post->post_name }}</td>
-                    <td>{{ $post->category_id }}</td> <!-- Assuming category relationship exists -->
+                    
+                    {{-- @if ($post->category_id = $catagorys->id) --}}
+                    <td>{{$post->category_id }}</td>
+                    {{-- @endif --}}
+                    <!-- Assuming category relationship exists -->
                     <td>
                         <span class="d-inline-block text-truncate" style="max-width: 120px;">
                             {{ $post->meta_title }}
