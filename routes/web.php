@@ -24,6 +24,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/index', function () {
+    return view('welc');
+});
+
 // categori Routes
 Route::get('/admin/category', [CatagoryController::class, 'index'])->name('admin.category.category');
 Route::get('/admin/addcategory', [CatagoryController::class, 'create'])->name('admin.category.addCategory');
