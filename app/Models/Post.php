@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Catagory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -21,4 +22,9 @@ class Post extends Model
         'status'
 
     ];
+
+    public function category(){
+
+        return $this->belongsTo(Catagory::class,'category_id','id');
+    }
 }
