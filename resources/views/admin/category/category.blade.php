@@ -7,7 +7,7 @@
         @if (session('message'))
             <div class="alert alert-success">{{ session('message') }}</div>
         @endif
-        <div class="table-responsive-col  table-bordered mt-3">
+        <div class="table-responsive-col  table-bordered mt-3 col-6">
             <table class="table  table-striped table-hover" slot="">
                 <thead class="bg-dark text-bg-dark ">
                     <tr class="">

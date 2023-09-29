@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-dark stretched-link text-decoration-none" href="#">View Details</a>
+                        <a class="small text-dark stretched-link text-decoration-none" href="{{url('/admin/publish')}}">View Details</a>
                         <div class="small text-dark"><i class="fas fa-angle-right "></i></div>
                     </div>
                 </div>

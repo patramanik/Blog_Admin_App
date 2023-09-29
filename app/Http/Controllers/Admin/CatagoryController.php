@@ -105,4 +105,28 @@ class CatagoryController extends Controller
             return redirect('admin/category')->with('message',' No Category id Found.') ;
         }
     }
+
+    public function approval(){
+        $catagorys = Catagory::where('status','0')->get();
+        $approval = Catagory::where('status','1')->get();
+        return view('admin.category.category-publish',compact('catagorys','approval'));
+    }
+
+    public function publish($id){
+        $catagory = Catagory::find($id);
+
+        $catagory->status = 1;
+        $catagory->update();
+
+        return redirect()->back()->with('message','Category now Public on your App');
+    }
+
+    public function hide($id){
+        $catagory = Catagory::find($id);
+
+        $catagory->status = 0;
+        $catagory->update();
+
+        return redirect()->back()->with('message','Category now Hide on your App');
+    }
 }

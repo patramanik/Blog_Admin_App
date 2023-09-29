@@ -35,6 +35,10 @@ Route::Post('/admin/addcategory', [CatagoryController::class, 'store']);
 Route::get('/admin/edit/{id}',[CatagoryController::class, 'edit'])->name('admin.category.edit');
 Route::put('/admin/update/{id}',[CatagoryController::class, 'update']);
 Route::get('/admin/destroy/{id}',[CatagoryController::class, 'destroy']);
+Route::get('/admin/publish',[CatagoryController::class, 'approval'])->name('admin.category.category-publish');
+Route::get('/admin/publisg_catagory/{id}',[CatagoryController::class, 'publish']);
+Route::get('/admin/not_publisg_catagory/{id}',[CatagoryController::class, 'hide']);
+
 
 // BlogPost
 Route::get('/admin/posts', [BlogPostController::class, 'show'])->name('admin.blogPost.posts');
