@@ -159,5 +159,29 @@ class BlogPostController extends Controller
         }
     }
 
+    public function approval(){
+        $post = Post::where('status','0')->get();
+        $approval = Post::where('status','1')->get();
+        return view('admin.blogPost.publish-post',compact('post','approval'));
+    }
+
+    public function publish($id){
+        $post = Post::find($id);
+
+        $post->status = 1;
+        $post->update();
+
+        return redirect()->back()->with('message','Now Post is Public on your App');
+    }
+
+    public function hide($id){
+        $post = Post::find($id);
+
+        $post->status = 0;
+        $post->update();
+
+        return redirect()->back()->with('message','Now post is Hide on your App');
+    }
+
 
 }

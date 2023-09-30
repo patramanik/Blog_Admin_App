@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section('title', 'Publish')
+@section('title', 'Post Publish')
 @section('content')
     <div class="container-fluid px-4">
-        <h2 class="mt-4">Category Publish</h2>
+        <h2 class="mt-4">Post Publish</h2>
 
         @if (session('message'))
             <div class="alert alert-success">{{ session('message') }}</div>
@@ -23,12 +23,12 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
-                            @foreach ($catagorys as $data)
+                            @foreach ($post as $data)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->post_name }}</td>
                                     <td>
-                                        <img src="{{ asset('uploads/category/' . $data->image) }}" class="img-thumbnail"
+                                        <img src="{{ asset('uploads/post/' . $data->image) }}" class="img-thumbnail"
                                             alt="imges" height="50px" width="70px">
                                     </td>
                                     <td>
@@ -39,7 +39,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ url('/admin/publisg_catagory/' . $data->id) }}" type="button"
+                                        <a href="{{ url('/admin/publish_post/' . $data->id) }}" type="button"
                                             class="btn btn-success btn-sm" style="margin: 2px 2px 2px 2px">publish</a>
                                     </td>
                                 </tr>
@@ -66,9 +66,9 @@
                             @foreach ($approval as $data)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->post_name}}</td>
                                     <td>
-                                        <img src="{{ asset('uploads/category/' . $data->image) }}" class="img-thumbnail"
+                                        <img src="{{ asset('uploads/Post/' . $data->image) }}" class="img-thumbnail"
                                             alt="imges" height="50px" width="70px">
                                     </td>
                                     <td>
@@ -79,7 +79,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ url('/admin/not_publisg_catagory/' . $data->id) }}" type="button"
+                                        <a href="{{ url('/admin/not_publish_post/' . $data->id) }}" type="button"
                                             class="btn btn-danger btn-sm" style="margin: 2px 2px 2px 2px">Hide</a>
                                     </td>
                                 </tr>

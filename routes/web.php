@@ -48,6 +48,11 @@ Route::post('/admin/upload', [BlogPostController::class, 'upload'])->name('admin
 Route::get('/admin/editPost/{id}', [BlogPostController::class, 'edit'])->name('admin.blogPost.editPost');
 Route::put('/admin/updatepost/{id}', [BlogPostController::class, 'update']);
 Route::get('/admin/destroypost/{id}', [BlogPostController::class, 'destroy']);
+Route::get('/admin/post-publish', [BlogPostController::class, 'approval'])->name('admin.blogPost.publish-post');
+Route::get('/admin/publish_post/{id}', [BlogPostController::class, 'publish']);
+Route::get('/admin/not_publish_post/{id}', [BlogPostController::class, 'hide']);
+
+
 //aditionl
 Route::get('/admin/postview', [BlogPostController::class, 'view'])->name('admin.blogPost.view');
 
