@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('welc');
 });
-
+Route::middleware('auth')->group(function () {
 // categori Routes
 Route::get('/admin/category', [CatagoryController::class, 'index'])->name('admin.category.category');
 Route::get('/admin/addcategory', [CatagoryController::class, 'create'])->name('admin.category.addCategory');
@@ -61,6 +61,7 @@ Route::get('/admin/postview', [BlogPostController::class, 'view'])->name('admin.
 // Route::get('/admin/cat', [BlogPostController::class, 'pshow']);
  Route::get('/dashbord/catagory', [AdminDashbordController::class, 'catagory']);
 
+});
 
 
 
