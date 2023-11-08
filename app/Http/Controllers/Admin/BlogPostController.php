@@ -75,7 +75,8 @@ class BlogPostController extends Controller
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move('uploads/post/', $filename);
-            $post->image = $filename;
+            $url = asset('uploads/post/' . $filename);
+            $post->image = $url;
         }
 
         $post->Post_keywords = $data['Post_keywords'];
@@ -122,14 +123,17 @@ class BlogPostController extends Controller
 
         if ($request->hasFile('image')) // Corrected the method name to hasFile
         {
-            $imgLocation = 'uploads/category/'.$post->image;
+            $url = $post->image;
+            $path = pathinfo($url, PATHINFO_BASENAME);
+            $imgLocation = 'uploads/post/'.$path;
             if(File::exists($imgLocation)){
                 File::delete($imgLocation);
             }
             $file = $request->file('image'); // Corrected the variable name from $data to $request
             $filename = time() . '.' . $file->getClientOriginalExtension(); // Used getClientOriginalExtension() method
             $file->move('uploads/post/', $filename);
-            $post->image = $filename;
+            $url = asset('uploads/post/' . $filename);
+            $post->image = $url;
         }
 
         $post->Post_keywords = $data['Post_keywords'];
@@ -141,23 +145,25 @@ class BlogPostController extends Controller
 
     }
 
-
     public function destroy($id){
         $post = Post::find($id);
-        if($post)
-        {
-            $imgLocation = 'uploads/post/'.$post->image;
+        if($post){
+            $url = $post->image;
+            $path = pathinfo($url, PATHINFO_BASENAME);
+            $imgLocation = 'uploads/post/'.$path;
+
             if(File::exists($imgLocation)){
-                File::delete($imgLocation);
+                File::delete($imgLocation); // Fixed typo in variable name
             }
+
             $post->delete();
-            return redirect('/admin/posts')->with('message','Category deleted Successfully') ;
+            return redirect('/admin/posts')->with('message', 'Post deleted Successfully'); // Updated the success message
         }
-        else
-        {
-            return redirect('/admin/posts')->with('message',' No Category id Found.') ;
+        else{
+            return redirect('/admin/posts')->with('message', 'No Post with the given ID found'); // Updated the error message
         }
     }
+
 
     public function approval(){
         $post = Post::where('status','0')->get();

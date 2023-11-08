@@ -42,7 +42,8 @@ class CatagoryController extends Controller
             $file = $request->file('image'); // Corrected the variable name from $data to $request
             $filename = time() . '.' . $file->getClientOriginalExtension(); // Used getClientOriginalExtension() method
             $file->move('uploads/category/', $filename);
-            $category->image = $filename;
+            $url = asset('uploads/category/' . $filename);
+            $category->image = $url;
         }
 
         $category->meta_description = $data['description'];
@@ -70,14 +71,17 @@ class CatagoryController extends Controller
 
         if ($request->hasFile('image')) // Corrected the method name to hasFile
         {
-            $imgLocation = 'uploads/category/'.$category->image;
+            $url = $category->image;
+            $path = pathinfo($url, PATHINFO_BASENAME);
+            $imgLocation = 'uploads/category/'.$path;
             if(File::exists($imgLocation)){
                 File::delete($imgLocation);
             }
             $file = $request->file('image'); // Corrected the variable name from $data to $request
             $filename = time() . '.' . $file->getClientOriginalExtension(); // Used getClientOriginalExtension() method
             $file->move('uploads/category/', $filename);
-            $category->image = $filename;
+            $url = asset('uploads/category/' . $filename);
+            $category->image = $url;
         }
 
         $category->meta_description = $data['description'];
@@ -93,7 +97,9 @@ class CatagoryController extends Controller
         $category=Catagory::find($id);
         if($category)
         {
-            $imgLocation = 'uploads/category/'.$category->image;
+            $url = $category->image;
+            $path = pathinfo($url, PATHINFO_BASENAME);
+            $imgLocation = 'uploads/category/'.$path;
             if(File::exists($imgLocation)){
                 File::delete($imgLocation);
             }

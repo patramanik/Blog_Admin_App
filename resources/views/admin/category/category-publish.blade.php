@@ -28,7 +28,7 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>
-                                        <img src="{{ asset('uploads/category/' . $data->image) }}" class="img-thumbnail"
+                                        <img src="{!!$data->image!!}" class="img-thumbnail"
                                             alt="imges" height="50px" width="70px">
                                     </td>
                                     <td>
@@ -68,7 +68,7 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>
-                                        <img src="{{ asset('uploads/category/' . $data->image) }}" class="img-thumbnail"
+                                        <img src="{!!$data->image!!}" class="img-thumbnail"
                                             alt="imges" height="50px" width="70px">
                                     </td>
                                     <td>

@@ -37,7 +37,7 @@
                                 </span>
                             </td>
                             <td>
-                                <img src="{{ asset('uploads/post/' . $post->image) }}" class="img-thumbnail" alt="image"
+                                <img src="{!!$post->image!!}" class="img-thumbnail" alt="image"
                                     height="50px" width="70px">
                             </td>
                             <td>

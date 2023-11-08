@@ -28,7 +28,7 @@
                         <td>{{$catagory->name}}</td>
                         <td>{{$catagory->mata_title}}</td>
                         <td>
-                            <img src="{{asset('uploads/category/'.$catagory->image)}}" class="img-thumbnail" alt="imges"
+                            <img src="{!!$catagory->image!!}" class="img-thumbnail" alt="imges"
                                 height="50px" width="70px">
                         </td>
                         <td>
