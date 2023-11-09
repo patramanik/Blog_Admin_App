@@ -24,7 +24,7 @@ class ApiController extends Controller
             'name',
             'mata_title',
             'image',
-            'c_keywords',
+            // 'c_keywords',
             )->get();
         return response()->json(['catagorys' => $catagorys], 200);
         // return response()->json($catagorys, 200);
