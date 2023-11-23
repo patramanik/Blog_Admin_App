@@ -17,6 +17,8 @@ use App\Http\Controllers\api\ApiController;
 
 Route::get('/posts/{id?}', [ApiController::class, 'postList']);
 Route::get('/catagorys/{id?}', [ApiController::class, 'catagoryList']);
+Route::get('/search/{name}', [ApiController::class, 'search']);
+Route::Post('/comment',[ApiController::class,'comment']);
 
 
 

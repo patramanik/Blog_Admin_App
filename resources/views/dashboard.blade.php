@@ -20,10 +20,10 @@
 @section('title', 'Blog App')
 @section('content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Dashboard</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
+        <h1 class="mt-4 mb-3">Dashboard</h1>
+        @if (session('message'))
+            <div class="alert alert-success">{{ session('message') }}</div>
+        @endif
         <div class="row">
             <!-- Total Catagorys Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -113,5 +113,37 @@
                 </div>
             </div>
         </div>
+        <div class="card shadow col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-3 mv-1">
+            <h4 class="m-2">Not publish</h4>
+            <div class="table-responsive-col  table-bordered">
+                <table class="table  table-striped table-hover" slot="">
+                    <thead class="bg-dark text-bg-dark ">
+                        <tr>
+                            <th>Sno.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Commend</th>
+                            <th>Acction</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        @foreach ($commend as $data)
+                            <tr>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $data->user_name}}</td>
+                                <td>{{ $data->user_email}}</td>
+                                <td>{{$data->comment}}</td>
+                                <td>
+
+                                    <a href=" {{ url('/admin/delet-commend/' . $data->id) }}" type="button"
+                                        class="btn btn-success btn-sm" style="margin: 2px 2px 2px 2px">Delet</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 @endsection

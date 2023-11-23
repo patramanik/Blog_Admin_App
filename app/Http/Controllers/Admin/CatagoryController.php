@@ -104,11 +104,11 @@ class CatagoryController extends Controller
                 File::delete($imgLocation);
             }
             $category->delete();
-            return redirect('admin/category')->with('message','Category deleted Successfully') ;
+            return redirect('admin/category')->with('message','Category deleted Successfully');
         }
         else
         {
-            return redirect('admin/category')->with('message',' No Category id Found.') ;
+            return redirect('admin/category')->with('message',' No Category id Found.');
         }
     }
 

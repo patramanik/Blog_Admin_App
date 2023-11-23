@@ -59,6 +59,7 @@ Route::get('/admin/postview', [BlogPostController::class, 'view'])->name('admin.
 
 // Route::post('/admin/addpost', [BlogPostController::class, 'store']);
 // Route::get('/admin/cat', [BlogPostController::class, 'pshow']);
+Route::get('/admin/delet-commend/{id}', [AdminDashbordController::class, 'deletCommend']);
  Route::get('/dashbord/catagory', [AdminDashbordController::class, 'catagory']);
 
 });
