@@ -12,7 +12,14 @@ use App\Http\Controllers\Controller;
 class ApiController extends Controller
 {
     public function index(){
-        return DB::table('catagoris')->join('post','catagoris.id','=','post.category_id')->where('catagoris.status','=',1)->get();
+
+        return DB::table('catagoris')
+        ->join('post', 'catagoris.id', '=', 'post.category_id')
+        ->where('catagoris.status', '=', 1)
+        ->where('post.status', '=', 1)
+        ->get();
+
+        // return DB::table('catagoris')->join('post','catagoris.id','=','post.category_id')->where('catagoris.status','=',1)->get();
     }
 
     public function comment(Request $request){
