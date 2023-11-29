@@ -6,12 +6,13 @@ use App\Models\Post;
 use App\Models\Catagory;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ApiController extends Controller
 {
     public function index(){
-        return 0;
+        return DB::table('catagoris')->join('post','catagoris.id','=','post.category_id')->where('catagoris.status','=',1)->get();
     }
 
     public function comment(Request $request){
