@@ -12,15 +12,40 @@ use App\Http\Controllers\Controller;
 class ApiController extends Controller
 {
     public function index(){
-
-        return DB::table('catagoris')
+        $data = DB::table('catagoris')
         ->join('post', 'catagoris.id', '=', 'post.category_id')
         ->where('catagoris.status', '=', 1)
         ->where('post.status', '=', 1)
         ->get();
+        return response()->json(['data' => $data],200);
+
 
         // return DB::table('catagoris')->join('post','catagoris.id','=','post.category_id')->where('catagoris.status','=',1)->get();
     }
+
+    public function postData($category_id)
+    {
+        $posts = Post::where('status', '=', 1)
+            ->where('category_id', '=', $category_id)
+            ->select(
+                'id',
+                'category_id',
+                'post_name',
+                'meta_title',
+                'image',
+                'Post_keywords',
+                'post_content'
+            )
+            ->get();
+
+        if ($posts->isEmpty()) {
+            
+            return response()->json(['message' => 'No posts found for the given category.'], 404);
+        }
+
+        return response()->json(['Posts' => $posts], 200);
+    }
+
 
     public function comment(Request $request){
 

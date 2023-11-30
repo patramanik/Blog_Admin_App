@@ -20,6 +20,8 @@ Route::get('/catagorys/{id?}', [ApiController::class, 'catagoryList']);
 Route::get('/search/{name}', [ApiController::class, 'search']);
 Route::Post('/comment',[ApiController::class,'comment']);
 Route::get('/data',[ApiController::class,'index']);
+Route::get('/postdata/{category_id}',[ApiController::class,'postData']);
+
 
 
 
