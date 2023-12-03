@@ -39,7 +39,7 @@ class ApiController extends Controller
             ->get();
 
         if ($posts->isEmpty()) {
-            
+
             return response()->json(['message' => 'No posts found for the given category.'], 404);
         }
 
@@ -88,34 +88,85 @@ class ApiController extends Controller
         // return response()->json($catagorys, 200);
     }
 
-    public function postList($id=null){
+    public function postList($id = null) {
+        $posts = Post::where('status', '=', 1)
+            ->select(
+                'id',
+                'category_id',
+                'post_name',
+                'meta_title',
+                'image',
+                'Post_keywords',
+                'post_content',
+            );
 
-        $posts= $id?Post::where('status','=',1)->select(
-        'id',
-        'category_id',
-        'post_name',
-        'meta_title',
-        'image',
-        'Post_keywords',
-        'post_content',
-        )->find($id):Post::where('status','=',1)->select(
-        'id',
-        'category_id',
-        'post_name',
-        'meta_title',
-        'image',
-        'Post_keywords',
-        'post_content',
-        )->get();
+        if ($id) {
+            // If $id is provided, retrieve a single post by ID
+            $post = $posts->find($id);
+            return response()->json(['Posts' => $post], 200);
+        }
 
-        return response()->json(['Posts' => $posts],200);
+        // Retrieve all posts in descending order based on their IDs
+        $posts = $posts->orderBy('id', 'desc')->get();
 
+        return response()->json(['Posts' => $posts], 200);
     }
 
-    public function search($name){
-        $reselt = Post::where("post_name","like","%".$name."%")->get();
+    public function search($name = null) {
+        $result = Post::where('status', '=', 1)
+        ->select(
+            'id',
+            'category_id',
+            'meta_title',
+            'post_name',
+            'image',
+            'post_content',
+        );
 
-        return response()->json(['Reselt'=>$reselt],200);
+
+        if ($name) {
+            // If $name is provided, add a condition for partial match on post_name
+            $result->where('post_name', 'like', '%' . $name . '%')
+            ->select(
+                    'id',
+                    'category_id',
+                    'meta_title',
+                    'post_name',
+                    'image',
+                    'Post_keywords',
+                    'post_content',
+                    );
+        }
+
+        $result = $result->get();
+
+        return response()->json(['Result' => $result], 200);
     }
+
+    public function hedePosts($id = null) {
+        $posts = Post::where('status', '=', 1)
+            ->select(
+                'id',
+                'category_id',
+                'post_name',
+                'meta_title',
+                'image',
+                'Post_keywords',
+                'post_content',
+            );
+
+        if ($id) {
+            // If $id is provided, retrieve a single post by ID
+            $post = $posts->find($id);
+            return response()->json(['Posts' => $post], 200);
+        }
+
+        // Retrieve the most recent 5 posts in descending order based on their IDs
+        $posts = $posts->orderBy('id', 'desc')->take(5)->get();
+
+        return response()->json(['Posts' => $posts], 200);
+    }
+
+
 
 }

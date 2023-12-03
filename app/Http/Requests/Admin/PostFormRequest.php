@@ -40,7 +40,7 @@ class PostFormRequest extends FormRequest
                 'mimes:jpeg,jpg,png'
             ],
             'Post_keywords' =>[
-                'required',
+                'nullable',
                 'string'
             ],
             'Post_Content' =>[
