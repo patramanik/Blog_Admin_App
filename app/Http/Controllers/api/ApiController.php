@@ -11,17 +11,50 @@ use App\Http\Controllers\Controller;
 
 class ApiController extends Controller
 {
-    public function index(){
-        $data = DB::table('catagoris')
-        ->join('post', 'catagoris.id', '=', 'post.category_id')
-        ->where('catagoris.status', '=', 1)
-        ->where('post.status', '=', 1)
-        ->get();
-        return response()->json(['data' => $data],200);
 
+    // public function index() {
+    //     $data = DB::table('post')
+    //         ->join('catagoris', 'post.category_id', '=', 'catagoris.id')
+    //         ->where('catagoris.status', '=', 1)
+    //         ->where('post.status', '=', 1)
+    //         ->select(
+    //             'post.id',
+    //             'post.category_id',
+    //             'catagoris.name',
+    //             'post.post_name',
+    //             'post.meta_title',
+    //             'post.image',
+    //             'post.Post_keywords',
+    //             'post.post_content'
+    //         )
+    //         ->get();
+    //         $posts = $data->orderBy('id', 'desc')->get();
 
-        // return DB::table('catagoris')->join('post','catagoris.id','=','post.category_id')->where('catagoris.status','=',1)->get();
+    //     return response()->json(['data' => $posts], 200);
+    // }
+
+    public function index() {
+        $data = DB::table('post')
+            ->join('catagoris', 'post.category_id', '=', 'catagoris.id')
+            ->where('catagoris.status', '=', 1)
+            ->where('post.status', '=', 1)
+            ->select(
+                'post.id',
+                'post.category_id',
+                'catagoris.name',
+                'post.post_name',
+                'post.meta_title',
+                'post.image',
+                'post.Post_keywords',
+                'post.post_content'
+            )
+            ->orderBy('post.id', 'desc') // Order by post.id in descending order
+            ->get();
+
+        return response()->json(['data' => $data], 200);
     }
+
+
 
     public function postData($category_id)
     {
@@ -143,30 +176,51 @@ class ApiController extends Controller
         return response()->json(['Result' => $result], 200);
     }
 
-    public function hedePosts($id = null) {
-        $posts = Post::where('status', '=', 1)
+    // public function hedePosts($id = null) {
+    //     $posts = Post::where('status', '=', 1)
+    //         ->select(
+    //             'id',
+    //             'category_id',
+    //             'post_name',
+    //             'meta_title',
+    //             'image',
+    //             'Post_keywords',
+    //             'post_content',
+    //         );
+
+    //     if ($id) {
+    //         // If $id is provided, retrieve a single post by ID
+    //         $post = $posts->find($id);
+    //         return response()->json(['Posts' => $post], 200);
+    //     }
+
+    //     // Retrieve the most recent 5 posts in descending order based on their IDs
+    //     $posts = $posts->orderBy('id', 'desc')->take(5)->get();
+
+    //     return response()->json(['Posts' => $posts], 200);
+    // }
+
+    public function hedePosts() {
+        $data = DB::table('post')
+            ->join('catagoris', 'post.category_id', '=', 'catagoris.id')
+            ->where('catagoris.status', '=', 1)
+            ->where('post.status', '=', 1)
             ->select(
-                'id',
-                'category_id',
-                'post_name',
-                'meta_title',
-                'image',
-                'Post_keywords',
-                'post_content',
-            );
+                'post.id',
+                'post.category_id',
+                'catagoris.name',
+                'post.post_name',
+                'post.meta_title',
+                'post.image',
+                'post.Post_keywords',
+                'post.post_content'
+            )
+            ->orderBy('post.id', 'desc')->take(5) // Order by post.id in descending order
+            ->get();
 
-        if ($id) {
-            // If $id is provided, retrieve a single post by ID
-            $post = $posts->find($id);
-            return response()->json(['Posts' => $post], 200);
-        }
+        return response()->json(['data' => $data], 200);
 
-        // Retrieve the most recent 5 posts in descending order based on their IDs
-        $posts = $posts->orderBy('id', 'desc')->take(5)->get();
 
-        return response()->json(['Posts' => $posts], 200);
     }
-
-
 
 }
