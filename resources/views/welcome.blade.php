@@ -23,8 +23,8 @@
     </nav> --}}
     <nav class="navbar navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand" href="#">
-            <img src="{{asset('assets/img/logo_biologyLearner.png')}}" alt="" width="100" height="24">
+          <a class="navbar-brand">
+            <img src="{{asset('assets/img/logo_biologyLearner.png')}}" alt="" width="130" height="40">
           </a>
         </div>
     </nav>

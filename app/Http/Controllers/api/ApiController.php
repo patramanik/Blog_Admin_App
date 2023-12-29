@@ -170,10 +170,9 @@ class ApiController extends Controller
                     'post_content',
                     );
         }
-
         $result = $result->get();
 
-        return response()->json(['Result' => $result], 200);
+        return response()->json(['data' => $result], 200);
     }
 
     // public function hedePosts($id = null) {
